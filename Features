@@ -1,1 +1,108 @@
+## Selenium Features
 
+1. Selenium is an **open source** automation testing tool
+2. It is exclusively for **web based applications**
+3. It supports **multiple browsers**(chrome.safari, firefox, IE), **multiple platforms**(windows,linux,apple os), **multiple languages**(c#, python, java,php, ruby)
+
+# Locators
+
+Locators tell Selenium which element on the webpage you want to interact with.
+In Java, they are used with the `By` class:
+
+locators are the strategies used to find and interact with elements on a web page
+
+### Types of locators
+
+## 1.By.id
+
+Locates an element using its id attribute.
+
+Fastest and most preferred locator.
+```
+driver.findElement(By.id("email")).sendKeys("test@example.com");
+```
+
+## 2.By.name
+
+Uses the element’s name attribute.
+```
+driver.findElement(By.name("password")).sendKeys("123456");
+```
+
+## 3.By.className
+
+Finds elements by their CSS class value.
+
+Not recommended if class names are long or dynamic.
+```
+driver.findElement(By.className("btn-login")).click();
+```
+
+## 4.By.tagName
+
+Locates elements by their HTML tag (e.g., input, button, a).
+
+Often used for retrieving multiple elements.
+```
+List<WebElement> links = driver.findElements(By.tagName("a"));
+```
+
+## 5.By.linkText
+
+Used to locate links (<a> tag) using the exact visible text.
+```
+driver.findElement(By.linkText("Forgot Password")).click();
+```
+## 6.By.partialLinkText
+
+Similar to linkText but matches partial visible text.
+```
+driver.findElement(By.partialLinkText("Forgot")).click();
+```
+## 7.By.cssSelector
+
+Very powerful and flexible.
+
+Often used when id/class is missing.
+
+Supports complex queries.
+
+Examples:
+```
+driver.findElement(By.cssSelector("#login"));          // id
+driver.findElement(By.cssSelector(".btn.primary"));    // class
+driver.findElement(By.cssSelector("input[type='text']"));
+driver.findElement(By.cssSelector("div > ul li:first-child"));
+```
+
+## 8.By.xpath
+
+Most powerful and flexible locator.
+
+Can navigate the DOM tree.
+
+Useful for dynamic elements when nothing else works.
+
+Examples:
+
+### Absolute XPath (not recommended)
+```
+driver.findElement(By.xpath("/html/body/div[1]/input"));
+```
+
+### Relative XPath (recommended)
+```
+driver.findElement(By.xpath("//input[@id='username']"));
+driver.findElement(By.xpath("//button[text()='Login']"));
+driver.findElement(By.xpath("//div[@class='menu']//a[contains(text(), 'Home')]"));
+```
+
+| Priority | Locator         | Reason                                         |
+| -------- | --------------- | ---------------------------------------------- |
+| 1        | **id**          | Fastest, unique                                |
+| 2        | **name**        | If id not available                            |
+| 3        | **cssSelector** | Fast & powerful                                |
+| 4        | **xpath**       | Most flexible, but slower                      |
+| 5        | Others          | Use when necessary (linkText, className, etc.) |
+
+   
